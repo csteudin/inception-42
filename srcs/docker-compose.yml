@@ -1,3 +1,37 @@
 version: "3.5"
 
-volumes: 
+networks:
+  inception:
+    name: inception
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/.
+    #ports:
+    #- "443:443"
+    depends_on:
+    - wordpress
+    netorks:
+    - inception
+    restart: always
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/nginx/.
+     #ports:
+    #- "443:443"
+    depends_on:
+    - mariadb
+    networks:
+    - inception
+    restart: always
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/.
+    #ports:
+    #- "443:443"
+    networks:
+    - inception
+    restart: always
