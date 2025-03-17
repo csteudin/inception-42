@@ -2,13 +2,28 @@ networks:
   inception:
     name: inception
 
-#volumes:
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      device: /home/$(USER)/data/wordpress
+      o: bind,ro
+      type: none
+  
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      device: /home/$(USER)/data/mariadb
+      o: bind,ro
+      type: none
 
 services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx/.
-    init: true
+    #init: true
     #ports:
     #- "443:443"
     depends_on:
@@ -20,7 +35,7 @@ services:
   wordpress:
     container_name: wordpress
     build: ./requirements/nginx/.
-    init: true
+    #init: true
     #ports:
     #- "443:443"
     depends_on:
@@ -32,7 +47,7 @@ services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb/.
-    init: true
+    #init: true
     #ports:
     #- "443:443"
     networks:
