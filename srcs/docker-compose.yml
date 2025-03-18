@@ -25,6 +25,7 @@ volumes:
 services:
   nginx:
     container_name: nginx
+    init: true
     build: ./requirements/nginx/.
     ports:
     - "443:443"
@@ -36,6 +37,7 @@ services:
 
   wordpress:
     container_name: wordpress
+    init: true
     build: ./requirements/wordpress/.
     depends_on:
     - mariadb
@@ -45,6 +47,7 @@ services:
 
   mariadb:
     container_name: mariadb
+    init: true
     build: ./requirements/mariadb/.
     volumes:
     - mariadb:/var/lib/mysql

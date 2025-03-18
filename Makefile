@@ -37,3 +37,8 @@ clean: down
 	docker system prune -af
 	docker volume prune -f
 	docker network prune -f
+
+secrets: 
+	mkdir secrets
+	touch secrets/db_passwd.txt
+	touch secrets/db_root_passwd.txt

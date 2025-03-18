@@ -1,10 +1,11 @@
 # srcs/nginx/Dockerfile
+
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y nginx tini \
+RUN apt-get update && apt-get install -y nginx \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT []
 
 CMD ["bash"]
 
