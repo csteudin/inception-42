@@ -48,8 +48,17 @@ services:
     build: ./requirements/mariadb/.
     volumes:
     - mariadb:/var/lib/mysql
+    secrets:
+    - db_root_password
+    - db_password
     env_file:
     - ./.env
     networks:
     - inception
     restart: always
+
+secrets:
+  db_root_password:
+    file: ../secrets/db_root_passwd.txt
+  db_password:
+    file: ../secrets/db_passwd.txt

@@ -1,9 +1,7 @@
 #!/bin/sh
 
-export DB_PASSWD=$(cat /run/secrets/db_passwd.txt)
-export DB_ROOT_PASSWD=$(cat /run/secrets/db_root_passwd.txt)
-# vielleicht mit ../secrets . . . versuchen
+# properly implement secrets to get loaded
 
-service mysql start
+# create database and user and flush privileges
 
-exec mysqld
+# start mysql here or in dockerfile
