@@ -62,6 +62,6 @@ services:
 
 secrets:
   db_root_password:
-    file: ../secrets/db_root_passwd.txt
+    file: ../secrets/db_root_passwd
   db_password:
-    file: ../secrets/db_passwd.txt
+    file: ../secrets/db_passwd

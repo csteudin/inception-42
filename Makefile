@@ -40,5 +40,5 @@ clean: down
 
 secrets: 
 	mkdir secrets
-	touch secrets/db_passwd.txt
-	touch secrets/db_root_passwd.txt
+	touch secrets/db_passwd
+	touch secrets/db_root_passwd
