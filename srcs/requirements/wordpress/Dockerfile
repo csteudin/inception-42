@@ -2,13 +2,10 @@
 
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y php php-fpm php-mysql curl \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y php php-fpm php-mysql curl \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT []
+COPY ./tools/init_wp.sh /tmp/init_wp.sh
 
-CMD ["bash"]
 
-# Passwort aus Secret lesen
-#RUN export DB_PASSWORD=$(cat /run/secrets/db_password) \
-#&& export DB_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
+ENTRYPOINT ["bash", "/tmp/init_wp.sh"]
