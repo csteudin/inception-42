@@ -41,6 +41,12 @@ services:
     build: ./requirements/wordpress/.
     depends_on:
     - mariadb
+    secrets:
+    - wp_root_password
+    - wp_password
+    - db_password
+    env_file:
+    - ./.env
     networks:
     - inception
     restart: always
@@ -65,3 +71,9 @@ secrets:
     file: ../secrets/db_root_passwd
   db_password:
     file: ../secrets/db_passwd
+  wp_root_password:
+    file: ../secrets/wp_root_passwd
+  wp_password:
+    file: ../secrets/wp_passwd
+
+

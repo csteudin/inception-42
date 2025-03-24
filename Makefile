@@ -42,3 +42,6 @@ secrets:
 	mkdir secrets
 	touch secrets/db_passwd
 	touch secrets/db_root_passwd
+	touch secrets/wp_passwd
+	touch secrets/wp_root_passwd
+
