@@ -24,9 +24,22 @@ build:
 	echo "$(GREEN) $(PROJECT) succesfully built!$(RESET)" || \
 	echo "$(RED) $(PROJECT) failed the building process!$(RESET)"
 
+# for single testing !/-._.-\!
 up:
 	echo "$(BLUE)starting $(PROJECT)...$(RESET)"
 	docker-compose -f $(DOC_COMPOSE) up -d
+
+db:
+	echo "$(BLUE)starting mariadb...$(RESET)"
+	docker-compose -f $(DOC_COMPOSE) up -d mariadb
+
+wp:
+	echo "$(BLUE)starting wordpress...$(RESET)"
+	docker-compose -f $(DOC_COMPOSE) up -d wordpress
+
+nx:
+	echo "$(BLUE)starting nginx...$(RESET)"
+	docker-compose -f $(DOC_COMPOSE) up -d nginx
 
 down:
 	echo "$(BLUE)stopping $(PROJECT)...$(RESET)"
