@@ -2,11 +2,15 @@
 
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx openssl \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT []
+COPY ./cnf/default.conf /etc/ngninx/conf.d/
 
-CMD ["bash"]
+COPY ./tools/init_nginx.sh /tmp/init_nginx.sh
 
-#RUN ["nginx"]
+RUN chmod +x /tmp/init_nginx.sh
+
+RUN rm /etc/nginx/sites-enabled/*
+
+ENTRYPOINT ["/tmp/init_nginx.sh"]

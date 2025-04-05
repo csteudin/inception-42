@@ -15,4 +15,4 @@ COPY ./tools/init_mariadb.sh /tmp/init_mariadb.sh
 
 RUN chmod +x /tmp/init_mariadb.sh
 
-ENTRYPOINT ["bash", "/tmp/init_mariadb.sh"]
+ENTRYPOINT ["/tmp/init_mariadb.sh"]
