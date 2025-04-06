@@ -7,7 +7,9 @@ volumes:
     name: wordpress
     driver: local
     driver_opts:
+#FOR MAC
 #      device: /Users/${USER}/data/wordpress
+#FOR LINUX
       device: /home/${USER}/data/wordpress
       o: bind
       type: none
@@ -16,7 +18,9 @@ volumes:
     name: mariadb
     driver: local
     driver_opts:
+#FOR MAC
 #      device: /Users/${USER}/data/mariadb
+#FOR LINUX
       device: /home/${USER}/data/mariadb
       o: bind
       type: none
@@ -42,8 +46,12 @@ services:
     container_name: wordpress
     init: true
     build: ./requirements/wordpress/.
+    ports:
+    - "9000:9000"
     depends_on:
     - mariadb
+    volumes:
+    - wordpress:/var/www/html
     secrets:
     - wp_root_password
     - wp_password
