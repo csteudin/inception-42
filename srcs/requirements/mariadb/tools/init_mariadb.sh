@@ -1,6 +1,7 @@
 #!/bin/sh
 
-set -eo pipefail
+#set -eo pipefail
+set -e pipefail
 
 DB_PASSWORD=$(cat /run/secrets/db_password)
 DB_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
@@ -29,7 +30,7 @@ if [ ! -f "$DB_INITIALIZED" ]; then
 	echo "GRANT ALL PRIVILEGES ON $DB_DATABASE.* TO '$DB_USER'@'%' ;" >> db1.sql
 	echo "FLUSH PRIVILEGES;" >>  db1.sql
 	echo "> parsing input into mysql"
-	mysql --user=mysql < db1.sql
+	mysql < db1.sql
 
 	mysqladmin shutdown
 	wait "$DB_PID" || true

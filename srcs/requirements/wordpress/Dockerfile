@@ -2,7 +2,7 @@
 
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y php7.4 php7.4-fpm php7.4-mysql curl \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y php7.4 php7.4-fpm php7.4-mysql curl mariadb-client\
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY ./cnf/info.php /tmp/info.php
