@@ -51,8 +51,10 @@ clean: down
 	docker volume prune -f
 	docker network prune -f
 
+re: clean build up
+
 secrets: 
-	mkdir secrets
+	mkdir -p ./secrets
 	touch secrets/db_passwd
 	touch secrets/db_root_passwd
 	touch secrets/wp_passwd

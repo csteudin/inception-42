@@ -40,4 +40,3 @@ if [ ! -f "$DB_INITIALIZED" ]; then
 fi
 
 echo "> executing mysql"
-exec mysqld --user=mysql --console

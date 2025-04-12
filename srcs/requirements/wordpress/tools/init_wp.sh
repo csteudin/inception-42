@@ -27,28 +27,19 @@ mkdir -p /var/www/html
 cd /var/www/html
 rm -rf *
 
-#TESTING IF PHP IS ABLE TO BE SEEN
-mv /tmp/info.php .
-
 #add checks here if it is already installed and set up 
 #download the wp core
 wp core download --allow-root
 
-# renaming the sample config so we can use it
-#mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-
 wp config create \
 	--dbname="${DB_DATABASE}"\
-	--dbhost="mariadb"\
+	--dbhost="mariadb:3306"\
 	--dbuser="${DB_USER}"\
 	--dbpass="${DB_PASSWORD}"\
 	--allow-root
 
-# set up the credentials for the database
-#wp config set DB_NAME "$DB_DATABASE" --allow-root
-#wp config set DB_USER "$DB_USER" --allow-root
-#wp config set DB_PASSWORD "$DB_PASSWORD" --allow-root
-#wp config set DB_HOST "mariadb" --allow-root
+wp config set WP_HOME 'https://csteudin.42.fr' --allow-root
+wp config set WP_SITEURL 'https://csteudin.42.fr' --allow-root
 
 # the main wp install
 wp core install \
@@ -61,9 +52,18 @@ wp core install \
 
 wp user create "${WP_USER}" "${WP_EMAIL}" --user_pass="${WP_PASSWORD}" --allow-root
 
+#instals and activates the 2023 std wp theme 
+wp theme install twentytwentythree --activate --allow-root
+
 wp redis enable --allow-root
 chown -R www-data:www-data /var/www/html/
+chown -R www-data:www-data /var/www/html/wp-content
+chmod -R 755 /var/www/html/wp-content
+
+#TESTING IF PHP IS ABLE TO BE SEEN
+mv /tmp/info.php .
 
 fi
 
+echo "> letting php handler run"
 exec /usr/sbin/php-fpm7.4 -F
