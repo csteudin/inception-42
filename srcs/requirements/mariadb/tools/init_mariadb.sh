@@ -29,7 +29,6 @@ if [ ! -f "$DB_INITIALIZED" ]; then
 	echo "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD' ;" >> db1.sql
 	echo "GRANT ALL PRIVILEGES ON $DB_DATABASE.* TO '$DB_USER'@'%' ;" >> db1.sql
 	echo "FLUSH PRIVILEGES;" >>  db1.sql
-	echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASSWORD' ;" >> db1.sql
 	echo "> parsing input into mysql"
 	mysql < db1.sql
 
