@@ -44,16 +44,19 @@ wp config set WP_SITEURL 'https://csteudin.42.fr' --allow-root
 # the main wp install
 wp core install \
 	--url="https://$DOMAIN"\
-	--title=${WP_TITLE}\
+	--title=${WP_NAME}\
 	--admin_user=${WP_ROOT}\
 	--admin_password=${WP_ROOT_PASSWORD}\
 	--admin_email=${WP_ADMIN_MAIL}\
 	--allow-root
 
+# creation of the wp user
 wp user create "${WP_USER}" "${WP_EMAIL}" --user_pass="${WP_PASSWORD}" --allow-root
 
-#instals and activates the 2023 std wp theme 
-wp theme install twentytwentythree --activate --allow-root
+#instals and activates the astra wp theme  DOES NOT WORK !
+#wp theme install astra --activate --allow-root
+#wp theme activate astra --allow-root
+#wp theme update astra --allow-root
 
 wp redis enable --allow-root
 chown -R www-data:www-data /var/www/html/
@@ -61,7 +64,7 @@ chown -R www-data:www-data /var/www/html/wp-content
 chmod -R 755 /var/www/html/wp-content
 
 #TESTING IF PHP IS ABLE TO BE SEEN
-mv /tmp/info.php .
+mv /tmp/info.php /var/www/html/info.php
 
 fi
 
